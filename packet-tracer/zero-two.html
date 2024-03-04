@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #373542;
+        background: linear-gradient(90deg, #000 50%, #fff 50%);
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .c {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 16rem;
+        text-align: center;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        transform-origin: center;
+      }
+
+      #a {
+        color: #fff;
+        transform: translate(-50%, -50%) skewY(-15deg);
+      }
+
+      #b {
+        color: #000;
+        transform: translate(-50%, -50%) skewY(15deg);
+      }
+
+      .container,
+      .container {
+        flex: 1;
+        min-height: 100vh;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p id="a" class="c">Zero<br />Two</p>
+    </div>
+    <div class="container">
+      <p id="b" class="c">Zero<br />Two</p>
+    </div>
+
+    <script>
+      const elA = document.getElementById("a");
+      const elB = document.getElementById("b");
+      const elParent = document.querySelector("body");
+
+      document.addEventListener("mousemove", (e) => {
+        const x = e.clientX;
+        const centerX = elParent.clientWidth / 2;
+        const textWidth = elA.clientWidth / 2;
+        const deltaX = centerX - x - textWidth;
+
+        elA.style.transform = `skewY(-15deg) translate(${deltaX}px, -64.5%) `;
+        elB.style.transform = `skewY(15deg) translate(${deltaX}px, -35.5%) `;
+      });
+    </script>
+  </body>
+</html>
